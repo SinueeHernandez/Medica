@@ -1,0 +1,34 @@
+﻿@model Medica.MedicoEspecialidad
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MedicoEspecialidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialidades.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidades.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medico.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

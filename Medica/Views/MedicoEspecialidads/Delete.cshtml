@@ -1,0 +1,40 @@
+﻿@model Medica.MedicoEspecialidad
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MedicoEspecialidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialidades.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidades.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medico.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
