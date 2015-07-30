@@ -1,0 +1,22 @@
+USE [MedicaDB]
+GO
+
+/****** Object:  Table [dbo].[Genero]    Script Date: 30/07/2015 06:05:30 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Genero](
+	[GeneroId] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[Descripcion] [nchar](50) NULL,
+ CONSTRAINT [PK_Genero] PRIMARY KEY CLUSTERED 
+(
+	[GeneroId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
