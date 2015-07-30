@@ -21,6 +21,7 @@ namespace Medica.Controllers
             return View(medicoEspecialidad.ToList());
         }
 
+        
         // GET: MedicoEspecialidads/Details/5
         public ActionResult Details(decimal id)
         {

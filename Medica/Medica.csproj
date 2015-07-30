@@ -137,6 +137,7 @@
     <Content Include="Views\Consultas\Details.cshtml" />
     <Content Include="Views\Consultas\Edit.cshtml" />
     <Content Include="Views\Consultas\Index.cshtml" />
+    <Content Include="Views\Medicos\PorMedico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

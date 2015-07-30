@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Medica;
+using System.Data.Entity.Core.Objects;
 
 namespace Medica.Controllers
 {
@@ -18,6 +19,18 @@ namespace Medica.Controllers
         public ActionResult Index()
         {
             return View(db.Medico.ToList());
+        }
+
+        // GET: MedicoEspecialidads/Details/3
+        // Param: Id del medico
+        public ActionResult PorMedico(decimal Medicoid)
+        {
+            if (Medicoid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Especialidades> medicoEspecialidad = db.Especialidades.SqlQuery(@" select Esp.EspecialidadId, Esp.nombre, Esp.Descripcion from MedicoEspecialidad as mdEsp join Especialidades as Esp on mdEsp.EspecilidadId = Esp.EspecialidadId where mdEsp.medicoid = {0} ;", Medicoid).ToList();
+            return PartialView(medicoEspecialidad);
         }
 
         // GET: Medicos/Details/5

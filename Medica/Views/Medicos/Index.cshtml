@@ -1,25 +1,20 @@
 ﻿@model IEnumerable<Medica.Medico>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nuestros Medicos";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th colspan="3">
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoPaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoMaterno)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
@@ -27,7 +22,7 @@
             @Html.DisplayNameFor(model => model.Foto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Biografia)
+            Especialiad
         </th>
         <th></th>
     </tr>
@@ -50,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.Foto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Biografia)
+            @Html.Action("PorMedico" , new { item.MedicoID})
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MedicoID }) |
