@@ -93,7 +93,8 @@ namespace Medica
 
             modelBuilder.Entity<Medico>()
                 .Property(e => e.Foto)
-                .IsFixedLength();
+                .IsVariableLength()
+                .HasColumnType("image");
 
             modelBuilder.Entity<Medico>()
                 .HasMany(e => e.Consulta)

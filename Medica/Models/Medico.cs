@@ -5,6 +5,9 @@ namespace Medica
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.IO;
+    using System.Web.Mvc;
+    using System.Web;
 
     [Table("Medico")]
     public partial class Medico
@@ -35,7 +38,7 @@ namespace Medica
         [DisplayFormat(DataFormatString = "{0:###-###-####}")]
         public decimal Telefono { get; set; }
 
-        [MaxLength(500)]
+        
         public byte[] Foto { get; set; }
 
         public string Biografia { get; set; }
@@ -45,5 +48,12 @@ namespace Medica
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedicoEspecialidad> MedicoEspecialidad { get; set; }
+
+
+
+       
+
     }
+
+
 }
