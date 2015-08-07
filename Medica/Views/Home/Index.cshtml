@@ -22,3 +22,12 @@
 <p>
     @Html.ActionLink("MedicoEspecialidads", "../MedicoEspecialidads")
 </p>
+
+
+<p>
+    
+    @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
+{
+    BackendUrl = Url.Content("~/Home/Backend"),
+})
+</p>

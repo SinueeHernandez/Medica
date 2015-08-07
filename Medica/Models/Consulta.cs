@@ -19,9 +19,12 @@ namespace Medica
         [Column(TypeName = "numeric")]
         public decimal PacienteId { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Fecha { get; set; }
 
+        [DataType(DataType.DateTime)]
+        public DateTime FechaFin { get; set; }
+        
         [StringLength(500)]
         public string Sintomas { get; set; }
 

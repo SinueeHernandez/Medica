@@ -49,7 +49,7 @@ namespace Medica.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConsultaId,MedicoId,PacienteId,Fecha,Sintomas,Diagnostico,Tratamiento,Observaciones")] Consulta consulta)
+        public ActionResult Create([Bind(Include = "ConsultaId,MedicoId,PacienteId,Fecha,Sintomas,Diagnostico,Tratamiento,Observaciones, FechaFin")] Consulta consulta)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Medica.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConsultaId,MedicoId,PacienteId,Fecha,Sintomas,Diagnostico,Tratamiento,Observaciones")] Consulta consulta)
+        public ActionResult Edit([Bind(Include = "ConsultaId,MedicoId,PacienteId,Fecha,Sintomas,Diagnostico,Tratamiento,Observaciones, FechaFin")] Consulta consulta)
         {
             if (ModelState.IsValid)
             {
