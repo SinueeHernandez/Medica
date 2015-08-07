@@ -31,6 +31,8 @@ namespace Medica
         public string ApellidoMaterno { get; set; }
 
         [Column(TypeName = "numeric")]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayFormat(DataFormatString = "{0:###-###-####}")]
         public decimal Telefono { get; set; }
 
         [MaxLength(500)]

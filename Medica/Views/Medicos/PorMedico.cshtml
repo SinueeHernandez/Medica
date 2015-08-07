@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Medica.Especialidades>
 
-<table >
+@*<table class="table">*@
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-    </tr>
+    @*<tr>*@
+        @*<td>*@
+    <p>   @Html.DisplayFor(modelItem => item.Nombre)  </p>
+        @*</td>*@
+    @*</tr>*@
 }
-</table>
+@*</table>*@

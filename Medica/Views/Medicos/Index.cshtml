@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    @*<tr>
         <th colspan="3">
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
@@ -25,28 +25,33 @@
             Especialiad
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
 @foreach (var item in Model) {
     <tr>
+       
         <td>
+            @Html.DisplayFor(modelItem => item.Foto)
+        </td>
+        
+         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
+        
             @Html.DisplayFor(modelItem => item.ApellidoPaterno)
-        </td>
-        <td>
+        
             @Html.DisplayFor(modelItem => item.ApellidoMaterno)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto)
+        <td align="justify" width="500">
+            @Html.DisplayFor(modelItem => item.Biografia)
         </td>
+       
         <td>
             @Html.Action("PorMedico" , new { item.MedicoID})
         </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MedicoID }) |
             @Html.ActionLink("Details", "Details", new { id=item.MedicoID }) |

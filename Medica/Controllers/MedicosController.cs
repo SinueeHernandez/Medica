@@ -18,7 +18,8 @@ namespace Medica.Controllers
         // GET: Medicos
         public ActionResult Index()
         {
-            return View(db.Medico.ToList());
+            List<Medico> ListaMedicos = db.Medico.SqlQuery(@"Select * from medico order by Nombre").ToList();
+            return View(/*db.Medico.ToList()*/ListaMedicos);
         }
 
         // GET: MedicoEspecialidads/Details/3
