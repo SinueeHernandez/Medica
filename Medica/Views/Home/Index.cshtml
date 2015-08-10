@@ -28,6 +28,10 @@
     
     @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
 {
-    BackendUrl = Url.Content("~/Home/Backend"),
+    BackendUrl = Url.Action("BackEnd","Home"),
+    ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
+    TimeRangeSelectedHandling = DayPilot.Web.Mvc.Events.Calendar.TimeRangeSelectedHandlingType.JavaScript,
+    TimeRangeSelectedJavaScript = "create(start, end)",
+    EventMoveHandling = DayPilot.Web.Mvc.Events.Calendar.EventMoveHandlingType.CallBack
 })
 </p>

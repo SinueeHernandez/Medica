@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Medica;
+using DayPilot.Web.Mvc.Json;
 
 namespace Medica.Controllers
 {
@@ -42,6 +43,37 @@ namespace Medica.Controllers
             ViewBag.MedicoId = new SelectList(db.Medico, "MedicoID", "Nombre");
             ViewBag.PacienteId = new SelectList(db.Paciente, "PacienteId", "Nombres");
             return View();
+        }
+
+        // GET: Consultas/Create
+        public ActionResult CreateDated(DateTime Fecha, DateTime FechaFin)
+        {
+            ViewBag.MedicoId = new SelectList(db.Medico, "MedicoID", "Nombre");
+            ViewBag.PacienteId = new SelectList(db.Paciente, "PacienteId", "Nombres");
+            Consulta consulta = new Consulta();
+            consulta.Fecha = Fecha;
+            consulta.FechaFin = FechaFin;
+            return View(consulta);
+        }
+
+        // POST: Consultas/CreateDated
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDated([Bind(Include = "ConsultaId,MedicoId,PacienteId,Fecha,Sintomas,Diagnostico,Tratamiento,Observaciones, FechaFin")] Consulta consulta)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Consulta.Add(consulta);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.MedicoId = new SelectList(db.Medico, "MedicoID", "Nombre", consulta.MedicoId);
+            ViewBag.PacienteId = new SelectList(db.Paciente, "PacienteId", "Nombres", consulta.PacienteId);
+            //return View(consulta);
+            return JavaScript(SimpleJsonSerializer.Serialize("OK"));
         }
 
         // POST: Consultas/Create

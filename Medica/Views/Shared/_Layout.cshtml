@@ -7,6 +7,22 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    function create(start, end) {
+        var m = new DayPilot.Modal();
+        m.closed = function () {
+            if (this.result == "OK") {
+                dp.commandCallBack('refresh');
+            }
+            dp.clearSelection();
+        };
+        @*m.showUrl('@Url.Action("Create", "Consulta")?start=' + start + '&end=' + end);*@
+        m.showUrl('@Url.Action("CreateDated", "Consultas")?Fecha=' + start + '&FechaFin=' + end);
+    }
+
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,6 +52,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")" type="text/javascript"></script>
+    
 </body>
 </html>
