@@ -25,15 +25,17 @@ namespace Medica.Controllers
 
     class Dpc : DayPilotCalendar
     {
+        MedicaContext db = new MedicaContext();
         protected override void OnInit(InitArgs e)
         {
-            // UpdateWithMessage("Welcome!", CallBackUpdateType.Full);
-            Update(CallBackUpdateType.Full);
+       
+            UpdateWithMessage("Welcome!", CallBackUpdateType.Full);
+            //Update(CallBackUpdateType.Full);
         }
 
         protected override void OnFinish()
         {
-            MedicaContext db = new MedicaContext();
+            
             if (UpdateType == CallBackUpdateType.None)
             {
                 return;
@@ -54,12 +56,16 @@ namespace Medica.Controllers
                 case "refresh":
                     Update();
                     break;
+                case "navigate":
+                    StartDate = (DateTime)e.Data["start"];
+                    Update(CallBackUpdateType.Full);
+                    break;
             }
         }
 
         protected override void OnEventMove(EventMoveArgs e)
         {
-            MedicaContext db = new MedicaContext();
+            
             int ID = int.Parse(e.Id);
             var item = (from ev in db.Consulta where ev.ConsultaId == ID select ev).First();
             if (item != null)
@@ -69,6 +75,17 @@ namespace Medica.Controllers
                 db.SaveChanges();
             }
 
+            Update();
+        }
+
+        protected override void OnEventDelete(EventDeleteArgs e)
+        {
+            
+            int ID = Convert.ToInt32(e.Id);
+            var item = (from ev in db.Consulta where ev.ConsultaId == ID select ev).First();
+            db.Consulta.Remove(item);
+            db.SaveChanges();
+            
             Update();
         }
     }

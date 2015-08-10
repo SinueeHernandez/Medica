@@ -67,13 +67,16 @@ namespace Medica.Controllers
             {
                 db.Consulta.Add(consulta);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return JavaScript(SimpleJsonSerializer.Serialize("OK"));
+                
             }
 
             ViewBag.MedicoId = new SelectList(db.Medico, "MedicoID", "Nombre", consulta.MedicoId);
             ViewBag.PacienteId = new SelectList(db.Paciente, "PacienteId", "Nombres", consulta.PacienteId);
-            //return View(consulta);
-            return JavaScript(SimpleJsonSerializer.Serialize("OK"));
+
+            return View(consulta);
+            //return JavaScript(SimpleJsonSerializer.Serialize("OK"));
         }
 
         // POST: Consultas/Create

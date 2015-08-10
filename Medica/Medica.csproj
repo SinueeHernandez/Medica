@@ -39,7 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DayPilot.Web.Mvc, Version=1.5.414.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DayPilot.Web.Mvc, Version=7.9.5759.1, Culture=neutral, PublicKeyToken=b8d928e6588028e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\DayPilot.Web.Mvc.dll</HintPath>
     </Reference>
@@ -180,7 +180,6 @@
     <Content Include="Views\Generoes\Edit.cshtml" />
     <Content Include="Views\Generoes\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Pacientes\_MiniCreate.cshtml" />
     <Content Include="Views\Medicos\FileUpload.cshtml" />
     <Content Include="Views\Consultas\CreateDated.cshtml" />
     <None Include="Web.Debug.config">

@@ -44,10 +44,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
-        <td align="justify" width="500">
-            @Html.DisplayFor(modelItem => item.Biografia)
-        </td>
-       
+      
         <td>
             @Html.Action("PorMedico" , new { item.MedicoID})
         </td>

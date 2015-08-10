@@ -30,13 +30,13 @@
                 @Html.DropDownList("PacienteId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PacienteId, "", new { @class = "text-danger" })
             </div>
-            <a class="button" href="@Url.Content("~/Pacientes/MiniCreate")" id="artistAddLink">Agregar paceinte</a>                
+            <a class="button" href="@Url.Content("~/Pacientes/Create")" id="pacienteAddLink">Agregar paceinte</a>                
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                
             </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
 
             </div>

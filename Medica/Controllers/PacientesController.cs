@@ -61,17 +61,6 @@ namespace Medica.Controllers
             return View(paciente);
         }
         
-        //:get form create
-        public ActionResult MiniCreate()
-        {
-            // Don't allow this method to be called directly.
-            if (this.HttpContext.Request.IsAjaxRequest() != true)
-                return RedirectToAction("Index", "Pacientes");
-
-            return PartialView("MiniCreate");
-        }
-
-
         // GET: Pacientes/Edit/5
         public ActionResult Edit(decimal id)
         {
