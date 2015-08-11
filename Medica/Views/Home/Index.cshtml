@@ -39,19 +39,24 @@
        })
             </td>
             <td width="1300px">
+                <div class="calendar_blue_wrap"><div class="calendar_blue_wrap_inner">
+                        @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
+                   {
+                       BackendUrl = Url.Action("BackEnd", "Home"),
+                       ViewType = ViewType.WorkWeek,
+                       CssOnly = true,
+                       
+                       TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+                       TimeRangeSelectedJavaScript = "create(start, end)",
+                       EventMoveHandling = EventMoveHandlingType.CallBack,
+                       EventClickHandling = EventClickHandlingType.JavaScript,
+                       EventClickJavaScript = "edit(e)",
+                       TimeFormat = DayPilot.Web.Mvc.Enums.TimeFormat.Clock24Hours,
+                       EventDeleteHandling = EventDeleteHandlingType.CallBack
 
-                @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
-       {
-           BackendUrl = Url.Action("BackEnd", "Home"),
-           ViewType = ViewType.WorkWeek,
-           TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
-           TimeRangeSelectedJavaScript = "create(start, end)",
-           EventMoveHandling = EventMoveHandlingType.CallBack,
-           EventClickHandling = EventClickHandlingType.JavaScript,
-           EventClickJavaScript = "edit(e)",
-           TimeFormat = DayPilot.Web.Mvc.Enums.TimeFormat.Clock24Hours,
-           EventDeleteHandling = EventDeleteHandlingType.CallBack
-       })
+                   })
+                        </div>
+                    </div>
             </td>
         </tr>
     </table>
@@ -80,6 +85,8 @@
             dpc.clearSelection();
         };
         m.showUrl('@Url.Action("Edit", "Consultas")/' + e.id());
+
+
     };
     
 

@@ -98,6 +98,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\materials_bi___.css" />
+    <Content Include="Content\rwc.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -116,6 +119,21 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Themes\calendar_blue.css" />
+    <Content Include="Themes\calendar_g.css" />
+    <Content Include="Themes\calendar_green.css" />
+    <Content Include="Themes\calendar_traditional.css" />
+    <Content Include="Themes\calendar_transparent.css" />
+    <Content Include="Themes\calendar_white.css" />
+    <Content Include="Themes\month_blue.css" />
+    <Content Include="Themes\month_g.css" />
+    <Content Include="Themes\month_green.css" />
+    <Content Include="Themes\month_traditional.css" />
+    <Content Include="Themes\month_transparent.css" />
+    <Content Include="Themes\month_white.css" />
+    <Content Include="Themes\navigator_green.css" />
+    <Content Include="Themes\navigator_transparent.css" />
+    <Content Include="Themes\navigator_white.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
