@@ -26,13 +26,14 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PacienteId, "Paciente", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-3">
                 @Html.DropDownList("PacienteId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PacienteId, "", new { @class = "text-danger" })
-            </div>
-            <a class="button" href="@Url.Content("~/Pacientes/Create")" id="pacienteAddLink">Agregar paceinte</a>                
+                </div>
+            <div class="col-md-3">
+                <a class="button" href="@Url.Content("~/Pacientes/Create")" id="pacienteAddLink">Agregar paceinte</a>
+            </div>            
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
