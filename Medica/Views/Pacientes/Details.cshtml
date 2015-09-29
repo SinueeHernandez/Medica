@@ -60,6 +60,10 @@
 
     </dl>
 </div>
+<div>
+    <h4>Historial</h4>
+    @Html.BeginForm("SearchByPacientId","Consultas")
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PacienteId }) |
     @Html.ActionLink("Back to List", "Index")

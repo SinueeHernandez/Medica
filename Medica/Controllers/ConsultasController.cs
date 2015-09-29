@@ -22,6 +22,16 @@ namespace Medica.Controllers
             return View(consulta.ToList());
         }
 
+        // GET: Consultas By PacientId
+        public ActionResult SearchByPacientId(int PacienteId)
+        {
+            //var consulta = db.Consulta.Include(c => c.Medico).Include(c => c.Paciente);
+            List<Consulta> ListaConsultas = db.Consulta.SqlQuery ( @"select * from consulta where pacienteId = " + PacienteId).ToList();
+            return View(ListaConsultas);
+        }
+
+
+
         // GET: Consultas/Details/5
         public ActionResult Details(decimal id)
         {
