@@ -8,12 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using Medica;
 using DayPilot.Web.Mvc.Json;
+using Medica.Models;
 
 namespace Medica.Controllers
 {
     public class ConsultasController : Controller
     {
-        private MedicaContext db = new MedicaContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Consultas
         public ActionResult Index()

@@ -6,27 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Medica Martinez</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        @*<link href="~/Content/menus.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/menus-horizontal.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/menus-skin.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/menus-skin-min.css" rel="stylesheet" type="text/css" />
-
-            http://purecss.io/base/
-        *@
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:200">
-    <link rel="stylesheet" href="/combo/1.18.13?/css/main-grid.css&/css/main.css&/css/menus.css&/css/rainbow/baby-blue.css">
-
-
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+            
     <script src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")" type="text/javascript"></script>
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,18 +30,19 @@
                     <li class="active"></li>
                     <li class="active">@Html.MenuLink("Consultas", "Index", "Consultas")</li>
                     <li class="pure-menu-item">@Html.MenuLink("Pacientes", "Index", "Pacientes")</li>
+                    <li class="pure-menu-item">@Html.MenuLink("Medicos", "Index", "Medicos")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Catalogos <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="pure-menu-item">@Html.MenuLink("Generos", "Index", "Generoes")</li>
-                            <li class="pure-menu-item">@Html.MenuLink("Medicos", "Index", "Medicos")</li>
                             <li class="pure-menu-item">@Html.MenuLink("Especialidades", "Index", "Especialidades")</li>
                             <li class="pure-menu-item">@Html.MenuLink("MedicoEspecialidads", "Index", "MedicoEspecialidads")</li>
                          </ul>
                     </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -125,9 +115,8 @@
             <p>&copy; @DateTime.Now.Year - Derechos Reservados Medica Martinez</p>
         </footer>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

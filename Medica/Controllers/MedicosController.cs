@@ -10,12 +10,13 @@ using Medica;
 using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Data.Entity.Infrastructure;
+using Medica.Models;
 
 namespace Medica.Controllers
 {
     public class MedicosController : Controller
     {
-        private MedicaContext db = new MedicaContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Medicos
         public ActionResult Index()

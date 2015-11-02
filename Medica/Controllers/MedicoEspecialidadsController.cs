@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Medica;
+using Medica.Models;
 
 namespace Medica.Controllers
 {
     public class MedicoEspecialidadsController : Controller
     {
-        private MedicaContext db = new MedicaContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: MedicoEspecialidads
         public ActionResult Index()

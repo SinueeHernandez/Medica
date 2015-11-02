@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using DayPilot.Web.Mvc;
 using DayPilot.Web.Mvc.Enums;
 using DayPilot.Web.Mvc.Events.Calendar;
+using Medica.Models;
 
 namespace Medica.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         // GET: Home
@@ -25,7 +27,7 @@ namespace Medica.Controllers
 
     class Dpc : DayPilotCalendar
     {
-        MedicaContext db = new MedicaContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         protected override void OnInit(InitArgs e)
         {
        

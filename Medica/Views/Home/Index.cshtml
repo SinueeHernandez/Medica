@@ -8,44 +8,25 @@
 }
 
 <h2>Inicio</h2>
-@*<p>
-    @Html.ActionLink("Consultas", "../Consultas")
-</p>
-<p>
-    @Html.ActionLink("Generos", "../Generoes")
-</p>
-<p>
-    @Html.ActionLink("Medicos","../Medicos")
-</p>
-<p>
-    @Html.ActionLink("Pacientes", "../Pacientes")
-</p>
-<p>
-    @Html.ActionLink("Especialidades", "../Especialidades")
-</p>
-<p>
-    @Html.ActionLink("MedicoEspecialidads", "../MedicoEspecialidads")
-</p>*@
-
-
-
+<body>
     <table>
         <tr>
             <td>
                 @Html.DayPilotNavigator("dpn", new DayPilotNavigatorConfig
-       {
-           BoundDayPilot = "dpc",
-           SelectMode = NavigatorSelectMode.Day
-       })
+           {
+               BoundDayPilot = "dpc",
+               SelectMode = NavigatorSelectMode.Day
+           })
             </td>
             <td width="1300px">
-                <div class="calendar_blue_wrap"><div class="calendar_blue_wrap_inner">
+                <div class="calendar_blue_wrap">
+                    <div class="calendar_blue_wrap_inner">
                         @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
                    {
                        BackendUrl = Url.Action("BackEnd", "Home"),
                        ViewType = ViewType.WorkWeek,
                        CssOnly = true,
-                       
+
                        TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
                        TimeRangeSelectedJavaScript = "create(start, end)",
                        EventMoveHandling = EventMoveHandlingType.CallBack,
@@ -55,12 +36,13 @@
                        EventDeleteHandling = EventDeleteHandlingType.CallBack
 
                    })
-                        </div>
                     </div>
+                </div>
             </td>
         </tr>
     </table>
     
+</body>
 
 <script type="text/javascript">
 
