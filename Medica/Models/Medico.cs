@@ -9,7 +9,7 @@ namespace Medica
     using System.Web.Mvc;
     using System.Web;
 
-    [Table("Medico")]
+    [Table("Medicos")]
     public partial class Medico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +19,16 @@ namespace Medica
             MedicoEspecialidad = new HashSet<MedicoEspecialidad>();
         }
 
+        [Key]
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal MedicoID { get; set; }
 
+        [Required]
         [StringLength(500)]
         public string Nombre { get; set; }
 
+        [Required]
         [StringLength(500)]
         public string ApellidoPaterno { get; set; }
 

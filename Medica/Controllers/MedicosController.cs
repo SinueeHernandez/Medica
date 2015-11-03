@@ -21,7 +21,7 @@ namespace Medica.Controllers
         // GET: Medicos
         public ActionResult Index()
         {
-            List<Medico> ListaMedicos = db.Medico.SqlQuery(@"Select * from medico order by Nombre").ToList();
+            List<Medico> ListaMedicos = db.Medico.SqlQuery(@"Select * from medicos order by Nombre").ToList();
             return View(/*db.Medico.ToList()*/ListaMedicos);
         }
 

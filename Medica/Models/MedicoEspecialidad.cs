@@ -9,6 +9,7 @@ namespace Medica
     [Table("MedicoEspecialidad")]
     public partial class MedicoEspecialidad
     {
+        [Key]
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal ID { get; set; }

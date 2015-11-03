@@ -6,7 +6,7 @@ namespace Medica
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Paciente")]
+    [Table("Pacientes")]
     public partial class Paciente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -15,6 +15,7 @@ namespace Medica
             Consulta = new HashSet<Consulta>();
         }
 
+        [Key]
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal PacienteId { get; set; }

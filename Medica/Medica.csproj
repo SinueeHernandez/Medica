@@ -272,13 +272,9 @@
     <Compile Include="Controllers\MedicoEspecialidadsController.cs" />
     <Compile Include="Controllers\MedicosController.cs" />
     <Compile Include="Controllers\PacientesController.cs" />
-    <Compile Include="Migrations\201511022302374_Init.cs" />
-    <Compile Include="Migrations\201511022302374_Init.Designer.cs">
-      <DependentUpon>201511022302374_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511022355491_Init1.cs" />
-    <Compile Include="Migrations\201511022355491_Init1.Designer.cs">
-      <DependentUpon>201511022355491_Init1.cs</DependentUpon>
+    <Compile Include="Migrations\201511032148395_Init.cs" />
+    <Compile Include="Migrations\201511032148395_Init.Designer.cs">
+      <DependentUpon>201511032148395_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -345,11 +341,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511022302374_Init.resx">
-      <DependentUpon>201511022302374_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511022355491_Init1.resx">
-      <DependentUpon>201511022355491_Init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511032148395_Init.resx">
+      <DependentUpon>201511032148395_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

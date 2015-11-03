@@ -6,11 +6,12 @@ namespace Medica
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Consulta")]
+    [Table("Consultas")]
     public partial class Consulta
     {
-        [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(TypeName = "numeric")]
+        
         public decimal ConsultaId { get; set; }
 
         [Column(TypeName = "numeric")]

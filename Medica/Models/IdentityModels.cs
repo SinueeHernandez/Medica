@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace Medica.Models
 {
@@ -40,13 +38,13 @@ namespace Medica.Models
         public virtual DbSet<Medico> Medico { get; set; }
         public virtual DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
         public virtual DbSet<Paciente> Paciente { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            ///Para las tablas de Usuarios nativas de ASP NET
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            ///Para las tablas de Usuarios nativas de Identity EntityFramework
+            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
 
             modelBuilder.Entity<Consulta>()
@@ -173,6 +171,9 @@ namespace Medica.Models
                 .HasMany(e => e.Consulta)
                 .WithRequired(e => e.Paciente)
                 .WillCascadeOnDelete(false);
+
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
