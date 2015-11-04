@@ -32,6 +32,12 @@ namespace Medica.Controllers
         }
 
 
+        // GET: Consultas ListView
+        public ActionResult ListView()
+        {
+            var consulta = db.Consulta.Include(c => c.Medico).Include(c => c.Paciente);
+            return View(consulta.ToList());
+        }
 
         // GET: Consultas/Details/5
         public ActionResult Details(decimal id)

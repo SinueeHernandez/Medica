@@ -1,72 +1,75 @@
-﻿@model IEnumerable<Medica.Consulta>
+﻿@using DayPilot.Web.Mvc;
+@using DayPilot.Web.Mvc.Events.Calendar
+@using DayPilot.Web.Mvc.Enums.Navigator
+@using ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-<h2>Index</h2>
+<h2>Agenda</h2>
+<body>
+    <table>
+        <tr>
+            <td>
+                @Html.DayPilotNavigator("dpn", new DayPilotNavigatorConfig
+           {
+               BoundDayPilot = "dpc",
+               SelectMode = NavigatorSelectMode.Day
+           })
+            </td>
+            <td width="1300px">
+                <div class="calendar_blue_wrap">
+                    <div class="calendar_blue_wrap_inner">
+                        @Html.DayPilotCalendar("dpc", new DayPilotCalendarConfig
+                   {
+                       BackendUrl = Url.Action("BackEnd", "Home"),
+                       ViewType = ViewType.WorkWeek,
+                       CssOnly = true,
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { } , new { @class = "btn btn-primary" } )
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Medico.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paciente.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sintomas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Diagnostico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tratamiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Observaciones)
-        </th>
-        <th></th>
-    </tr>
+                       TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+                       TimeRangeSelectedJavaScript = "create(start, end)",
+                       EventMoveHandling = EventMoveHandlingType.CallBack,
+                       EventClickHandling = EventClickHandlingType.JavaScript,
+                       EventClickJavaScript = "edit(e)",
+                       TimeFormat = DayPilot.Web.Mvc.Enums.TimeFormat.Clock24Hours,
+                       EventDeleteHandling = EventDeleteHandlingType.CallBack
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medico.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaFin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sintomas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Diagnostico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tratamiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Observaciones)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ConsultaId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ConsultaId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ConsultaId }, new { @class = "btn btn-primary btn-xs" })
-        </td>
-    </tr>
-}
+                   })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+</body>
 
-</table>
+<script type="text/javascript">
+
+    function create(start, end) {
+        var m = new DayPilot.Modal();
+        m.closed = function () {
+            if (this.result == "OK") {
+                dpc.commandCallBack('refresh');
+            }
+            dpc.clearSelection();
+        };
+        @*m.showUrl('@Url.Action("Create", "Consulta")?start=' + start + '&end=' + end);*@
+        m.showUrl('@Url.Action("CreateDated", "Consultas")?Fecha=' + start + '&FechaFin=' + end);
+    };
+    
+    function edit(e) {
+        var m = new DayPilot.Modal();
+        m.closed = function () {
+            if (this.result == "OK") {
+                dpc.commandCallBack('refresh');
+            }
+            dpc.clearSelection();
+        };
+        m.showUrl('@Url.Action("Edit", "Consultas")/' + e.id());
+
+
+    };
+    
+
+</script>

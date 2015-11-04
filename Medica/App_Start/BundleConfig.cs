@@ -9,7 +9,10 @@ namespace Medica
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-1.11.4.min.js",
+                        "~/Scripts/jquery.datetimepicker.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,7 +30,10 @@ namespace Medica
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-theme-Cerulean.css",
                       "~/Content/site.css",
-                      "~/Content/zocial.css"));
+                      "~/Content/zocial.css",
+                      "~/Content/themes/base/jquery-ui.min.css",
+                      "~/Content/jquery.datetimepicker.css"
+                      ));
 
         }
     }

@@ -31,7 +31,7 @@ namespace Medica.Models
         {
             return new ApplicationDbContext();
         }
-
+        
         public virtual DbSet<Consulta> Consulta { get; set; }
         public virtual DbSet<Especialidades> Especialidades { get; set; }
         public virtual DbSet<Genero> Genero { get; set; }

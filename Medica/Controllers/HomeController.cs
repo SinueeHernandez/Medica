@@ -31,13 +31,13 @@ namespace Medica.Controllers
         protected override void OnInit(InitArgs e)
         {
        
-            UpdateWithMessage("Welcome!", CallBackUpdateType.Full);
+            UpdateWithMessage("Cargando Consultas", CallBackUpdateType.Full);
             //Update(CallBackUpdateType.Full);
         }
 
         protected override void OnFinish()
         {
-            
+
             if (UpdateType == CallBackUpdateType.None)
             {
                 return;
@@ -48,7 +48,16 @@ namespace Medica.Controllers
             DataEndField = "FechaFin";
             DataTextField = "Sintomas";
 
-            Events = from e in db.Consulta select e;
+            //Events = from e in db.Consulta select e;
+            Events = from e in db.Consulta.SqlQuery(
+                @"select ConsultaId, Fecha, 
+                         fechafin, M.Nombre + ' - ' + P.Nombres + ' - ' + Sintomas  as Sintomas
+                        , M.medicoId, P.PacienteId , diagnostico, observaciones, tratamiento
+                    from consultas c    
+                    join Medicos M on C.MedicoId = M.MedicoId 
+                    join pacientes p on C.PacienteId = P.PacienteId"
+                    )
+                     select e;
         }
 
         protected override void OnCommand(CommandArgs e)

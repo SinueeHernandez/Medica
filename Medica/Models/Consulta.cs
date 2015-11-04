@@ -21,23 +21,27 @@ namespace Medica
         public decimal PacienteId { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd HH:mm }")]
         public DateTime Fecha { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd HH:mm }")]
         public DateTime FechaFin { get; set; }
         
         [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Sintomas { get; set; }
 
         [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Diagnostico { get; set; }
 
         [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Tratamiento { get; set; }
 
         [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Observaciones { get; set; }
 
         public virtual Medico Medico { get; set; }
