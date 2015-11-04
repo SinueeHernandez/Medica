@@ -9,9 +9,9 @@
     
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+    @Scripts.Render("~/bundles/daypilot")
             
-    <script src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/DayPilot/daypilot-all.min.js")" type="text/javascript"></script>*@
 
 </head>
 <body>
@@ -61,11 +61,29 @@
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-        $(document).ready(function () {
-        // This will make every element with the class "date-picker" into a DatePicker element
-        $('.date-time-picker').datetimepicker({mask: '9999/19/39 29:59'});
-    });
+        var logic = function (currentDateTime) {
+            // 'this' is jquery object datetimepicker
+            if (currentDateTime.getDay() == 6) {
+                this.setOptions({
+                    minTime: '11:00',
+                    maxTime: '16:00'
+                });
+            } else
+                this.setOptions({
+                    minTime: '8:00',
+                    maxTime: '21:00'
+                });
+        };
 
+        $(function () {
+            $('.date-time-picker').datetimepicker({
+                mask: '9999/19/39 29:59',
+                lazyInit: true,
+                step: 30,
+                onChangeDateTime: logic,
+                onShow: logic
+            });
+        });
     </script>
 </body>
 </html>
