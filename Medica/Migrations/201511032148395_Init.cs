@@ -8,7 +8,7 @@ namespace Medica.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Consulta",
+                "dbo.Consultas",
                 c => new
                     {
                         ConsultaId = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -22,18 +22,18 @@ namespace Medica.Migrations
                         Observaciones = c.String(maxLength: 500, fixedLength: true),
                     })
                 .PrimaryKey(t => t.ConsultaId)
-                .ForeignKey("dbo.Medico", t => t.MedicoId)
-                .ForeignKey("dbo.Paciente", t => t.PacienteId)
+                .ForeignKey("dbo.Medicos", t => t.MedicoId)
+                .ForeignKey("dbo.Pacientes", t => t.PacienteId)
                 .Index(t => t.MedicoId)
                 .Index(t => t.PacienteId);
             
             CreateTable(
-                "dbo.Medico",
+                "dbo.Medicos",
                 c => new
                     {
                         MedicoID = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
-                        Nombre = c.String(maxLength: 500, fixedLength: true),
-                        ApellidoPaterno = c.String(maxLength: 500, fixedLength: true),
+                        Nombre = c.String(nullable: false, maxLength: 500, fixedLength: true),
+                        ApellidoPaterno = c.String(nullable: false, maxLength: 500, fixedLength: true),
                         ApellidoMaterno = c.String(nullable: false, maxLength: 500, fixedLength: true),
                         Telefono = c.Decimal(nullable: false, precision: 18, scale: 0, storeType: "numeric"),
                         Foto = c.Binary(storeType: "image"),
@@ -51,7 +51,7 @@ namespace Medica.Migrations
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Especialidades", t => t.EspecilidadId)
-                .ForeignKey("dbo.Medico", t => t.MedicoId)
+                .ForeignKey("dbo.Medicos", t => t.MedicoId)
                 .Index(t => t.MedicoId)
                 .Index(t => t.EspecilidadId);
             
@@ -66,7 +66,7 @@ namespace Medica.Migrations
                 .PrimaryKey(t => t.EspecialidadId);
             
             CreateTable(
-                "dbo.Paciente",
+                "dbo.Pacientes",
                 c => new
                     {
                         PacienteId = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -78,48 +78,47 @@ namespace Medica.Migrations
                         GeneroID = c.Decimal(nullable: false, precision: 18, scale: 0, storeType: "numeric"),
                     })
                 .PrimaryKey(t => t.PacienteId)
-                .ForeignKey("dbo.Genero", t => t.GeneroID)
+                .ForeignKey("dbo.Generos", t => t.GeneroID)
                 .Index(t => t.GeneroID);
             
             CreateTable(
-                "dbo.Genero",
+                "dbo.Generos",
                 c => new
                     {
                         GeneroId = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
-                        Descripcion = c.String(maxLength: 50, fixedLength: true),
+                        Descripcion = c.String(nullable: false, maxLength: 50, fixedLength: true),
                     })
                 .PrimaryKey(t => t.GeneroId);
             
             CreateTable(
-                "dbo.IdentityRoles",
+                "dbo.AspNetRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 256),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "dbo.IdentityUserRoles",
+                "dbo.AspNetUserRoles",
                 c => new
                     {
-                        RoleId = c.String(nullable: false, maxLength: 128),
                         UserId = c.String(nullable: false, maxLength: 128),
-                        IdentityRole_Id = c.String(maxLength: 128),
-                        ApplicationUser_Id = c.String(maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => new { t.RoleId, t.UserId })
-                .ForeignKey("dbo.IdentityRoles", t => t.IdentityRole_Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.IdentityRole_Id)
-                .Index(t => t.ApplicationUser_Id);
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.ApplicationUsers",
+                "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        Email = c.String(),
+                        Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
@@ -129,70 +128,71 @@ namespace Medica.Migrations
                         LockoutEndDateUtc = c.DateTime(),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(),
+                        UserName = c.String(nullable: false, maxLength: 256),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
-                "dbo.IdentityUserClaims",
+                "dbo.AspNetUserClaims",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(),
+                        UserId = c.String(nullable: false, maxLength: 128),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.IdentityUserLogins",
+                "dbo.AspNetUserLogins",
                 c => new
                     {
+                        LoginProvider = c.String(nullable: false, maxLength: 128),
+                        ProviderKey = c.String(nullable: false, maxLength: 128),
                         UserId = c.String(nullable: false, maxLength: 128),
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.IdentityUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
-            DropForeignKey("dbo.Paciente", "GeneroID", "dbo.Genero");
-            DropForeignKey("dbo.Consulta", "PacienteId", "dbo.Paciente");
-            DropForeignKey("dbo.MedicoEspecialidad", "MedicoId", "dbo.Medico");
+            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Pacientes", "GeneroID", "dbo.Generos");
+            DropForeignKey("dbo.Consultas", "PacienteId", "dbo.Pacientes");
+            DropForeignKey("dbo.MedicoEspecialidad", "MedicoId", "dbo.Medicos");
             DropForeignKey("dbo.MedicoEspecialidad", "EspecilidadId", "dbo.Especialidades");
-            DropForeignKey("dbo.Consulta", "MedicoId", "dbo.Medico");
-            DropIndex("dbo.IdentityUserLogins", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserClaims", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Paciente", new[] { "GeneroID" });
+            DropForeignKey("dbo.Consultas", "MedicoId", "dbo.Medicos");
+            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Pacientes", new[] { "GeneroID" });
             DropIndex("dbo.MedicoEspecialidad", new[] { "EspecilidadId" });
             DropIndex("dbo.MedicoEspecialidad", new[] { "MedicoId" });
-            DropIndex("dbo.Consulta", new[] { "PacienteId" });
-            DropIndex("dbo.Consulta", new[] { "MedicoId" });
-            DropTable("dbo.IdentityUserLogins");
-            DropTable("dbo.IdentityUserClaims");
-            DropTable("dbo.ApplicationUsers");
-            DropTable("dbo.IdentityUserRoles");
-            DropTable("dbo.IdentityRoles");
-            DropTable("dbo.Genero");
-            DropTable("dbo.Paciente");
+            DropIndex("dbo.Consultas", new[] { "PacienteId" });
+            DropIndex("dbo.Consultas", new[] { "MedicoId" });
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.AspNetUserClaims");
+            DropTable("dbo.AspNetUsers");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Generos");
+            DropTable("dbo.Pacientes");
             DropTable("dbo.Especialidades");
             DropTable("dbo.MedicoEspecialidad");
-            DropTable("dbo.Medico");
-            DropTable("dbo.Consulta");
+            DropTable("dbo.Medicos");
+            DropTable("dbo.Consultas");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Medica.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201511022302374_Init"; }
+            get { return "201511032148395_Init"; }
         }
         
         string IMigrationMetadata.Source

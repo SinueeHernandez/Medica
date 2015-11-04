@@ -7,13 +7,13 @@ namespace Medica.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Init1 : IMigrationMetadata
+    public sealed partial class Init2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511022355491_Init1"; }
+            get { return "201511031954505_Init2"; }
         }
         
         string IMigrationMetadata.Source
